@@ -4,8 +4,9 @@ source $(dirname $0)/../lib/shell_functions.inc
 INPUT_FILE=$1
 ITERATIONS=${2:-$(( $(block_count) - 1 ))}
 
-for i in $(seq 0 ${ITERATIONS}); do
-  block_data=$(block $i)
-  echo "${block_data}" | sed '1!d'
-  echo "${block_data}" | sed '1d' | sort
+for i in $(block_order -1); do
+  echo "doing $i" >> /tmp/out
+  block $(( $i - 1 ))
+  #echo "${block_data}" | sed '1!d'
+  #echo "${block_data}" | sed '1d' | sort
 done

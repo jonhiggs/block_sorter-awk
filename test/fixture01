@@ -5,8 +5,20 @@ source $(dirname $0)/functions.inc
 RUNCMD=$(runcmd 01)
 BLOCK=0
 
+testBlock() {
+  assertEquals 1 $(block 0 | wc -l)
+  assertEquals 1 $(block 1 | wc -l)
+  assertEquals 2 $(block -1 | wc -l)
+}
+
 testBlockCount() {
   assertEquals 2 $(block_count)
+}
+
+testBlockOrder() {
+  assertEquals "2 1" "$(block_order -1)"
+  assertEquals "1" "$(block_order 0)"
+  assertEquals "1" "$(block_order 1)"
 }
 
 testLines() {

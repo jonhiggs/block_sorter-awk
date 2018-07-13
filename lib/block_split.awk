@@ -3,6 +3,8 @@ BEGIN       {
               delimiter="  ";
             }
 /^[^\ ]/    {
+              if (block == -1)
+                print $0;
               cur_block+=1;
             }
             {

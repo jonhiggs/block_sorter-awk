@@ -16,8 +16,7 @@ block_count() {
 }
 
 block_order() {
-  block 0 \
-    | sed '1d' \
+  block $1 \
     | awk '{ print $0,NR }' \
     | sort \
     | grep -E -o [0-9]+$ \
