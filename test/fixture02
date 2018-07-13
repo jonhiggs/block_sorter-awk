@@ -9,6 +9,10 @@ testBlockCount() {
   assertEquals 2 $(block_count)
 }
 
+testBlockOrder() {
+  assertEquals "2 1" "$(block_order)"
+}
+
 testLines() {
   assertEquals 6 $(${RUNCMD} | wc -l)
 }

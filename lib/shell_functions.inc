@@ -16,9 +16,11 @@ block_count() {
 }
 
 block_order() {
-  block ${INPUT_FILE} \
+  block 0 \
     | sed '1d' \
     | awk '{ print $0,NR }' \
     | sort \
-    | grep -E -o [0-9]+$
+    | grep -E -o [0-9]+$ \
+    | tr '\n' ' ' \
+    | sed 's/\ $//g'
 }
