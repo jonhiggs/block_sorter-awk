@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
-ROOT_DIR="$(dirname $0)/../"
-
-block_count() {
-  awk '
-    BEGIN    { c=0 }
-    /^[^\ ]/  { c+=1 }
-    END      { print c-1 }
-  ' ${INPUT_FILE}
-}
-
-block() {
-  awk \
-    -f ${ROOT_DIR}/lib/block_split.awk \
-    block=$1 \
-    ${INPUT_FILE}
-}
+source $(dirname $0)/../lib/shell_functions.inc
 
 INPUT_FILE=$1
 ITERATIONS=${2:-$(block_count)}
