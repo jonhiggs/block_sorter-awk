@@ -2,9 +2,14 @@
 ROOT_DIR="$(dirname $0)/../"
 
 block() {
-  input=$1
-  BLOCK=0
-  awk -f ${ROOT_DIR}/lib/block_split.awk "${input}"
+  local input=$1
+  awk \
+    -f ${ROOT_DIR}/lib/block_split.awk \
+    block=$2 \
+    "${input}"
 }
 
-block $1 | sort
+block_data=$(block $1 $2)
+
+echo "${block_data}" | sed '1!d'
+echo "${block_data}" | sed '1d' | sort

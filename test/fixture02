@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+source $(dirname $0)/functions.inc
+RUNCMD=$(runcmd 02)
+
+testBlock0Lines() {
+  assertEquals 3 $(${RUNCMD} 0 | wc -l)
+}
+
+testBlock0Key() {
+  assertEquals "1:" "$(${RUNCMD} 0 | sed '1!d')"
+}
+
+testBlock0Line2() {
+  assertEquals "first" $(${RUNCMD} 0 | sed '2!d')
+}
+
+testBlockLine2() {
+  assertEquals "second" $(${RUNCMD} 0 | sed '3!d')
+}
+
+# Load shUnit2.
+source $(dirname $0)/shunit/shunit2
