@@ -2,6 +2,10 @@
 source $(dirname $0)/functions.inc
 RUNCMD=$(runcmd 02)
 
+testLines() {
+  assertEquals 6 $(${RUNCMD} | wc -l)
+}
+
 testBlock0Lines() {
   assertEquals 3 $(${RUNCMD} 0 | wc -l)
 }

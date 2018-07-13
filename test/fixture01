@@ -1,17 +1,18 @@
 #! /usr/bin/env bash
 source $(dirname $0)/functions.inc
 RUNCMD=$(runcmd 01)
+BLOCK=0
 
 testLines() {
-  assertEquals $(${RUNCMD} | wc -l) 2
+  assertEquals 2 $(${RUNCMD} | wc -l)
 }
 
-testSortHead() {
-  assertEquals $(${RUNCMD} | head -n1) 1
+testSortLine1() {
+  assertEquals 1 "$(${RUNCMD} | sed '1!d')"
 }
 
-testSortTail() {
-  assertEquals $(${RUNCMD} | tail -n1) 2
+testSortLine2() {
+  assertEquals 2 "$(${RUNCMD} | sed '2!d')"
 }
 
 # Load shUnit2.
