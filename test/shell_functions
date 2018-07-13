@@ -1,15 +1,7 @@
 #! /usr/bin/env bash
-ROOT_DIR="$(dirname $0)/../"
-INPUT_FILE="${ROOT_DIR}/test/fixtures/01.txt"
-source $(dirname $0)/functions.inc
-RUNCMD=$(runcmd 01)
-BLOCK=0
+source $(dirname $0)/../lib/shell_functions.inc
 
 testBlockCount() {
-  assertEquals 2 $(block_count)
-}
-
-testLines() {
   assertEquals 2 $(${RUNCMD} | wc -l)
 }
 

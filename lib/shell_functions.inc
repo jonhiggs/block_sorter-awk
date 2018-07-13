@@ -11,13 +11,11 @@ block_count() {
   awk '
     BEGIN    { c=0 }
     /^[^\ ]/  { c+=1 }
-    END      { print c-1 }
+    END      { print c }
   ' ${INPUT_FILE}
 }
 
-
 block_order() {
-  set -x
   block ${INPUT_FILE} \
     | sed '1d' \
     | awk '{ print $0,NR }' \

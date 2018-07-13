@@ -2,7 +2,7 @@
 source $(dirname $0)/../lib/shell_functions.inc
 
 INPUT_FILE=$1
-ITERATIONS=${2:-$(block_count)}
+ITERATIONS=${2:-$(( $(block_count) - 1 ))}
 
 for i in $(seq 0 ${ITERATIONS}); do
   block_data=$(block $i)
